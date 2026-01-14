@@ -272,96 +272,8 @@
     </section>
     <!--/ Simulation Grasps -->
 
-    <!-- Partial Observation Grasps -->
-    <!-- <section class="section">
-      <div class="container is-max-desktop">
-        <div class="columns is-centered">
-          <div class="column">
-            <h2 class="title is-3 has-text-centered">Partial Observation Grasps</h2>
-          </div>
-        </div>
 
-        <div class="columns is-centered has-text-centered">
-
-          <div class="column is-one-quarter" style="display: flex; flex-direction: column; align-items: center;">
-            <model-viewer
-              id="modelViewer_mesh"
-              src="static/data/partial/Barrett_contactdb+apple_mesh.glb"
-              alt="Grasp"
-              ar
-              camera-controls
-              auto-rotate
-              auto-rotate-delay="1000"
-              interaction-prompt-threshold="2000"
-              style="width: 200px; height: 200px; border: 3px solid #66c0ff; border-radius: 15px;">
-            </model-viewer>
-            <p style="font-size: 20px; font-weight: bold;">Grasp</p>
-          </div>
-    
-          
-          <div class="column is-one-quarter" style="display: flex; flex-direction: column; align-items: center;">
-            <model-viewer
-              id="modelViewer_pc"
-              src="static/data/partial/Barrett_contactdb+apple_pc.glb"
-              alt="Observation"
-              ar
-              camera-controls
-              auto-rotate
-              auto-rotate-delay="1000"
-              interaction-prompt-threshold="2000"
-              style="width: 200px; height: 200px; border: 3px solid #66c0ff; border-radius: 15px;">
-            </model-viewer>
-            <p style="font-size: 20px; font-weight: bold;">Observation</p>
-          </div>
-    
-          
-          <div class="column is-one-quarter">
-            <div class="dropdown-container" style="text-align: center; margin-top: 10px; margin-bottom: 20px;">
-              <label for="robotNameP" style="font-size: 20px; font-weight: bold;">Robot Name</label>
-              <select id="robotNameP" class="custom-select" style="width: 200px; margin-top: 10px;">
-                <option value="Barrett" style="font-size: 14px;">Barrett</option>
-                <option value="Allegro" style="font-size: 14px;">Allegro</option>
-                <option value="ShadowHand" style="font-size: 14px;">ShadowHand</option>
-              </select>
-            </div>
-
-            <div class="dropdown-container" style="text-align: center; margin-top: 10px; margin-bottom: 20px;">
-              <label for="objectNameP" style="font-size: 20px; font-weight: bold;">Object Name</label>
-              <select id="objectNameP" class="custom-select" style="width: 200px; margin-top: 10px;">
-                <option value="contactdb+apple" style="font-size: 14px;">contactdb+apple</option>
-                <option value="contactdb+camera" style="font-size: 14px;">contactdb+camera</option>
-                <option value="contactdb+cylinder_medium" style="font-size: 14px;">contactdb+cylinder_medium</option>
-                <option value="contactdb+rubber_duck" style="font-size: 14px;">contactdb+rubber_duck</option>
-                <option value="contactdb+door_knob" style="font-size: 14px;">contactdb+door_knob</option>
-                <option value="contactdb+water_bottle" style="font-size: 14px;">contactdb+water_bottle</option>
-                <option value="ycb+baseball" style="font-size: 14px;">ycb+baseball</option>
-                <option value="ycb+pear" style="font-size: 14px;">ycb+pear</option>
-                <option value="ycb+potted_meat_can" style="font-size: 14px;">ycb+potted_meat_can</option>
-                <option value="ycb+tomato_soup_can" style="font-size: 14px;">ycb+tomato_soup_can</option>
-              </select>
-            </div>
-
-            <script>
-              function adjustSelectedFontSizeP() {
-                const selectElement = document.getElementById("objectNameP");
-                const selectedText = selectElement.options[selectElement.selectedIndex].text;
-                
-                const fontSize = Math.min(16, 320 / selectedText.length);
-                selectElement.style.fontSize = fontSize + "px";
-                const paddingSize = (32 - fontSize) / 2
-                selectElement.style.paddingTop = paddingSize + "px";
-                selectElement.style.paddingBottom = paddingSize + "px";
-              }
-            
-              window.onload = adjustSelectedFontSizeP;
-              document.getElementById("objectNameP").addEventListener("change", adjustSelectedFontSizeP);
-            </script>
-          </div>
-        </div>
-      </div>
-    </section> -->
-
-    <!-- <script>
+    <script>
       const modelViewer_mesh = document.getElementById('modelViewer_mesh');
       const modelViewer_pc = document.getElementById('modelViewer_pc');
       const robotNameSelectP = document.getElementById('robotNameP');
@@ -376,8 +288,96 @@
       }
       robotNameSelectP.addEventListener('change', updateModel);
       objectNameSelectP.addEventListener('change', updateModel);
-    </script> -->
+    </script>
     <!--/ Partial Observation Grasps -->
+
+
+    <!-- Training Dataset Visualization -->
+    <section class="section">
+      <div class="container is-max-desktop">
+        <div class="columns is-centered">
+          <div class="column">
+            <h2 class="title is-3 has-text-centered">Training Dataset (Mesh vs. Partial Point Cloud)</h2>
+          </div>
+        </div>
+
+        <div class="columns is-centered has-text-centered">
+          <div class="column is-one-third" style="display: flex; flex-direction: column; align-items: center;">
+            <model-viewer
+              id="trainingMeshViewer"
+              src="static/data/training_dataset/Bowl_mesh.glb"
+              alt="Original Mesh Grasp"
+              camera-controls
+              auto-rotate
+              auto-rotate-delay="1200"
+              interaction-prompt-threshold="2000"
+              style="width: 220px; height: 220px; border: 3px solid #66c0ff; border-radius: 15px;">
+            </model-viewer>
+            <p style="font-size: 20px; font-weight: bold; margin-top: 10px;">Original Mesh</p>
+          </div>
+
+          <div class="column is-one-third" style="display: flex; flex-direction: column; align-items: center;">
+            <model-viewer
+              id="trainingPcViewer"
+              src="static/data/training_dataset/Bowl_pc.glb"
+              alt="Observed Partial Point Cloud"
+              camera-controls
+              auto-rotate
+              auto-rotate-delay="1200"
+              interaction-prompt-threshold="2000"
+              style="width: 220px; height: 220px; border: 3px solid #66c0ff; border-radius: 15px;">
+            </model-viewer>
+            <p style="font-size: 20px; font-weight: bold; margin-top: 10px;">Partial Observation</p>
+          </div>
+        </div>
+
+        <div class="columns is-centered">
+          <div class="column is-half">
+            <div class="slider-container" style="text-align: center;">
+              <div style="font-size: 20px; font-weight: bold; margin-bottom: 12px;">
+                Object:
+                <span id="trainingObjectLabel">Bowl</span>
+              </div>
+              <input type="range" id="trainingObjectSlider" min="0" max="7" value="0" style="width: 100%; height: 16px;">
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <script>
+      const trainingObjects = [
+        "Bowl",
+        "Camera",
+        "CellPhone",
+        "Detergent",
+        "FoodItem",
+        "Piano",
+        "Pizza",
+        "RubiksCube"
+      ];
+
+      const trainingMeshViewer = document.getElementById('trainingMeshViewer');
+      const trainingPcViewer = document.getElementById('trainingPcViewer');
+      const trainingSlider = document.getElementById('trainingObjectSlider');
+      const trainingLabel = document.getElementById('trainingObjectLabel');
+
+      trainingSlider.max = trainingObjects.length - 1;
+
+      function updateTrainingModels() {
+        const objectIndex = parseInt(trainingSlider.value, 10);
+        const objectName = trainingObjects[objectIndex];
+        const displayName = objectName.replace(/([a-z])([A-Z])/g, '$1 $2');
+
+        trainingLabel.textContent = displayName;
+        trainingMeshViewer.src = `static/data/training_dataset/${objectName}_mesh.glb`;
+        trainingPcViewer.src = `static/data/training_dataset/${objectName}_pc.glb`;
+      }
+
+      trainingSlider.addEventListener('input', updateTrainingModels);
+      updateTrainingModels();
+    </script>
+    <!--/ Training Dataset Visualization -->
 
 
     <section class="section">
@@ -399,7 +399,9 @@
     </section>
 
 
-    <section class="section">
+
+    <!-- Video -->
+    <!-- <section class="section">
       <div class="container is-max-desktop">
         <div class="columns is-centered">
           <div class="column">
@@ -498,11 +500,11 @@
         mainVideo.load();
         mainVideo.play();
       }
-    </script>
+    </script> -->
     
 
     <!-- Citation -->
-    <section class="section" id="Citation">
+    <!-- <section class="section" id="Citation">
       <div class="container is-max-desktop content">
         <h2 class="title">Citation</h2>
         <pre><code>@INPROCEEDINGS{wei2024dro,
@@ -517,7 +519,7 @@
     doi={10.1109/ICRA55743.2025.11127754}
 }</code></pre>
       </div>
-    </section>
+    </section> -->
     <!--/ Citation -->
 
     <!-- Footer -->
@@ -528,9 +530,11 @@
             <div class="content">
               <p style="text-align: center;">
                 This website is designed based on
-                <a href="https://github.com/nerfies/nerfies.github.io">Nerfies</a>.
+                <a href="https://github.com/nerfies/nerfies.github.io">Nerfies</a>. 
+                and
+                <a href="https://nus-lins-lab.github.io/drograspweb/">D(R,O) Grasp</a>.
                 <br>
-                Thanks for your visiting😊!
+                Thanks for your visiting!
                 <span id="busuanzi_container_site_pv">
                   Total Page Views: <span id="busuanzi_value_site_pv"></span>
                 </span>
