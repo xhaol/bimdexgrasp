@@ -50,8 +50,8 @@
             <div class="column has-text-centered">
               <h1 class="title is-1 publication-title">BiDexGrasp: High-Quality Data Synthesis and Diffusion-Based Generation of Bimanual Dexterous Grasps</h1>
               <div class="is-size-5 publication-authors">
-                <span class="author-block">
-                  <!-- <a href="https://zhenyuwei2003.github.io/">Haoliang Xu</a><sup>1</sup>, -->
+                <!-- <span class="author-block">
+                  <a href="https://zhenyuwei2003.github.io/">Haoliang Xu</a><sup>1</sup>,
                    <a href="">Haoliang Xu</a><sup>1</sup>,
                 </span>
                 <span class="author-block">
@@ -59,7 +59,7 @@
                 </span>
                 <span class="author-block">
                   <a href="">Qiang Li</a><sup>2</sup>,
-                </span>
+                </span> -->
               </div>
 
               <div class="is-size-5 publication-authors">
@@ -182,7 +182,7 @@
             <h2 class="title is-3">Dataset Generation Pipeline</h2>
             <figure>
               <img src="./static/image/Dataset.png" alt="Dataset Generation Pipeline">
-              <figcaption style="font-style: normal; font-size: 0.95em;">123.</figcaption>
+              <figcaption style="font-style: normal; font-size: 0.95em;"> </figcaption>
             </figure>
           </div>
         </div>
@@ -385,8 +385,8 @@
           <div class="column is-four-fifths">
             <h2 class="title is-3">Diffusion Structure</h2>
             <figure style="display: flex; flex-direction: column; align-items: center;">
-              <img src="./static/image/Diffusion Structure.png" alt="Diffusion Structure" style="width: 100%; max-width: 1100px;">
-              <figcaption style="font-style: normal; font-size: 0.95em;">123.</figcaption>
+              <img src="./static/image/Diffusion_Structure.png" alt="Diffusion Structure" style="width: 100%; max-width: 1100px;">
+              <figcaption style="font-style: normal; font-size: 0.95em;"> </figcaption>
             </figure>
           </div>
         </div>
@@ -401,6 +401,9 @@
         <div class="columns is-centered has-text-centered">
           <div class="column is-four-fifths">
             <h2 class="title is-3 has-text-centered">Real-World Experiments</h2>
+            <figure style="margin-top: 20px;">
+              <img src="./static/image/Overview.png" alt="Real-World Experiments Overview" style="width: 100%; max-width: 1100px;">
+            </figure>
           </div>
         </div>
       </div>
@@ -422,13 +425,13 @@
           </div>
           
           <div class="carousel-controls">
-            <button id="prev-video-btn" class="carousel-btn">
-              <i class="fas fa-chevron-left"></i>
-            </button>
-            <span id="video-counter" class="video-counter">1 / 6</span>
-            <button id="next-video-btn" class="carousel-btn">
-              <i class="fas fa-chevron-right"></i>
-            </button>
+            <div class="slider-container" style="text-align: center;">
+              <div style="font-size: 20px; font-weight: bold; margin-bottom: 12px;">
+                Object:
+                <span id="realworld-object-label">Bottle</span>
+              </div>
+              <input type="range" id="realworld-slider" min="0" max="5" value="0" style="width: 100%; height: 16px;">
+            </div>
           </div>
         </div>
       </div>
@@ -444,32 +447,26 @@
         { src: 'static/data/realworld/Nvidia_Box.mp4', title: 'Box2' }
       ];
 
-      let currentVideoIndex = 0;
-
       const videoElement = document.getElementById('realworld-video');
       const videoSource = document.getElementById('realworld-video-source');
       const videoTitle = document.getElementById('realworld-video-title');
-      const videoCounter = document.getElementById('video-counter');
-      const prevBtn = document.getElementById('prev-video-btn');
-      const nextBtn = document.getElementById('next-video-btn');
+      const realworldSlider = document.getElementById('realworld-slider');
+      const realworldLabel = document.getElementById('realworld-object-label');
 
-      function updateVideo() {
-        const video = realworldVideos[currentVideoIndex];
+      realworldSlider.max = realworldVideos.length - 1;
+
+      function updateRealworldVideo() {
+        const videoIndex = parseInt(realworldSlider.value, 10);
+        const video = realworldVideos[videoIndex];
+        
         videoSource.src = video.src;
         videoTitle.textContent = video.title;
-        videoCounter.textContent = `${currentVideoIndex + 1} / ${realworldVideos.length}`;
+        realworldLabel.textContent = video.title;
         videoElement.load();
       }
 
-      prevBtn.addEventListener('click', () => {
-        currentVideoIndex = (currentVideoIndex - 1 + realworldVideos.length) % realworldVideos.length;
-        updateVideo();
-      });
-
-      nextBtn.addEventListener('click', () => {
-        currentVideoIndex = (currentVideoIndex + 1) % realworldVideos.length;
-        updateVideo();
-      });
+      realworldSlider.addEventListener('input', updateRealworldVideo);
+      updateRealworldVideo();
     </script>
     
     <!-- Video -->
