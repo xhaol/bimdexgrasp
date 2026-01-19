@@ -415,11 +415,11 @@
           <div class="video-carousel-wrapper">
             <div class="video-card">
               <video id="realworld-video" controls playsinline loop muted>
-                <source id="realworld-video-source" src="static/data/realworld/Bottle.mp4" type="video/mp4">
+                <source id="realworld-video-source" src="static/data/realworld/Drill_Box.mp4" type="video/mp4">
                 Your browser does not support the video tag.
               </video>
               <div class="video-meta">
-                <h3 id="realworld-video-title">Bottle</h3>
+                <h3 id="realworld-video-title">Long Box</h3>
               </div>
             </div>
           </div>
@@ -428,7 +428,7 @@
             <div class="slider-container" style="text-align: center;">
               <div style="font-size: 20px; font-weight: bold; margin-bottom: 12px;">
                 Object:
-                <span id="realworld-object-label">Bottle</span>
+                <span id="realworld-object-label">Long Box</span>
               </div>
               <input type="range" id="realworld-slider" min="0" max="5" value="0" style="width: 100%; height: 16px;">
             </div>
@@ -439,12 +439,12 @@
 
     <script>
       const realworldVideos = [
+        { src: 'static/data/realworld/Drill_Box.mp4', title: 'Long Box' },
         { src: 'static/data/realworld/Bottle.mp4', title: 'Bottle' },
         { src: 'static/data/realworld/Bin.mp4', title: 'Bin' },
         { src: 'static/data/realworld/Column.mp4', title: '3D printed column' },
         { src: 'static/data/realworld/Drill.mp4', title: 'Drill' },
-        { src: 'static/data/realworld/Drill_Box.mp4', title: 'Box1' },
-        { src: 'static/data/realworld/Nvidia_Box.mp4', title: 'Box2' }
+        { src: 'static/data/realworld/Nvidia_Box.mp4', title: 'Fat Box' }
       ];
 
       const videoElement = document.getElementById('realworld-video');
